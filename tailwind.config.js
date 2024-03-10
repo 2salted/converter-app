@@ -5,6 +5,7 @@ export default {
     extend: {},
     borderRadius: {
       30: "30px",
+      20: "20px"
     },
   },
   plugins: [],
