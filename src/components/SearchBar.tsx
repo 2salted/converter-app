@@ -3,9 +3,8 @@ import loupeImage from "../assets/loupeImage.png";
 import availableSearchQueries from "../searches.ts";
 
 export default function SearchBar() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [displayList, setDisplayList] = useState(false);
-  const [listItems, setListItems] = useState([""]);
+  const [searchQuery, setSearchQuery] = useState<string[] | string>("");
+  const [listItems, setListItems] = useState<string[]>([]);
   const ObjIntoArray = availableSearchQueries.map((obj) => obj.query);
 
   return (
@@ -21,7 +20,6 @@ export default function SearchBar() {
           onChange={(event) => {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
-              setDisplayList(true);
               let filteredArray = ObjIntoArray.filter((keyword) => {
                 return keyword
                   .toLowerCase()
@@ -29,7 +27,7 @@ export default function SearchBar() {
               });
               setListItems(filteredArray);
             } else if (!event.target.value.length) {
-              setDisplayList(false);
+              setListItems([]);
             }
           }}
         />
@@ -38,7 +36,7 @@ export default function SearchBar() {
         </button>
       </div>
       <div>
-        {displayList && (
+        {listItems.length > 0 ? (
           <ul className="bg-white p-0 border-t border-t-gray-500 rounded-bl-3xl rounded-br-3xl">
             {listItems.map((list: any, index: number) => {
               return (
@@ -51,6 +49,8 @@ export default function SearchBar() {
               );
             })}
           </ul>
+        ) : (
+          <div></div>
         )}
       </div>
     </div>
