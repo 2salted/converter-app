@@ -2,10 +2,15 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        MontserratReg: ["montserrat"],
+        jetbrainsmono: ["jetbrainsmono"],
+      },
+    },
     borderRadius: {
       30: "30px",
-      20: "20px"
+      20: "20px",
     },
   },
   plugins: [],

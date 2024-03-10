@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "montserrat";
+  src: local("montserrat1"),
+    url(./fonts/Montserrat-VariableFont_wght.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "jetbrainsmono";
+  src: local("jetbrainsmonoregular"),
+    url(./fonts/JetBrainsMono-VariableFont_wght.ttf) format("truetype");
+}

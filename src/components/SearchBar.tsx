@@ -6,6 +6,7 @@ export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState<string[] | string>("");
   const [listItems, setListItems] = useState<string[]>([]);
   const ObjIntoArray = availableSearchQueries.map((obj) => obj.query);
+
   let cssRender =
     "flex items-center pt-2.5 pb-2.5 pl-5 pr-5 rounded-30 shadow-xl";
 
@@ -17,7 +18,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="w-1/2 bg-white mx-auto rounded-30">
+    <div className="w-1/2 bg-transparent border-2 border-black mx-auto rounded-30">
       <div className={cssRender}>
         <input
           value={searchQuery}
@@ -46,15 +47,14 @@ export default function SearchBar() {
       </div>
       <div>
         {listItems.length > 0 ? (
-          <ul className="bg-white p-0 border-t border-t-gray-300 rounded-bl-20 rounded-br-20 shadow-xl">
+          <ul className="bg-transparent p-0 border-t border-t-gray-300 rounded-bl-30 rounded-br-30 shadow-xl">
             {listItems.map((list, index: number) => {
               return (
-                <li
-                  key={index}
-                  className="list-none text-sm rounded-none p-2 cursor-pointer hover:bg-slate-200 hover:last:rounded-bl-20 hover:last:rounded-br-20"
-                >
-                  {list}
-                </li>
+                <div className="list-none text-base rounded-none p-2 hover:bg-slate-200 last:rounded-bl-30 last:rounded-br-30">
+                  <li key={index} className="cursor-pointer p-1">
+                    {list}
+                  </li>
+                </div>
               );
             })}
           </ul>
