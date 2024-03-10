@@ -1,12 +1,12 @@
 import { useState } from "react";
 import loupeImage from "../assets/loupeImage.png";
-import searchQueryData from "../searches.ts";
+import availableSearchQueries from "../searches.ts";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [displayList, setDisplayList] = useState(false);
-  let result: any = [];
-  console.log(result);
+  const [listItems, setListItems] = useState([""]);
+  const ObjIntoArray = availableSearchQueries.map((obj) => obj.query);
 
   return (
     <div className="w-1/2 bg-white mx-auto rounded-30">
@@ -22,11 +22,12 @@ export default function SearchBar() {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
               setDisplayList(true);
-              result = searchQueryData.filter((keyword) => {
-                return keyword.query
+              let filteredArray = ObjIntoArray.filter((keyword) => {
+                return keyword
                   .toLowerCase()
                   .includes(event.target.value.toLowerCase());
               });
+              setListItems(filteredArray);
             } else if (!event.target.value.length) {
               setDisplayList(false);
             }
@@ -39,7 +40,7 @@ export default function SearchBar() {
       <div>
         {displayList && (
           <ul className="bg-white p-0 border-t border-t-gray-500 rounded-bl-3xl rounded-br-3xl">
-            {result.map((list: any, index: number) => {
+            {listItems.map((list: any, index: number) => {
               return (
                 <li
                   key={index}
