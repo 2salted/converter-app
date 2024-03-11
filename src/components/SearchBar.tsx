@@ -5,7 +5,6 @@ import availableSearchQueries from "../searches.ts";
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState<string[] | string>("");
   const [listItems, setListItems] = useState<string[]>([]);
-  const ObjIntoArray = availableSearchQueries.map((obj) => obj.query);
 
   let cssRender =
     "flex items-center pt-2.5 pb-2.5 pl-5 pr-5 rounded-30 shadow-xl";
@@ -30,12 +29,13 @@ export default function SearchBar() {
           onChange={(event) => {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
-              let filteredArray = ObjIntoArray.filter((keyword) => {
-                return keyword
+              let filteredArray = availableSearchQueries.filter((keyword) => {
+                return keyword.query
                   .toLowerCase()
                   .includes(event.target.value.toLowerCase());
               });
-              setListItems(filteredArray);
+              const arrayify = filteredArray.map((filtered) => filtered.query);
+              setListItems(arrayify);
             } else if (!event.target.value.length) {
               setListItems([]);
             }
