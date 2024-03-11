@@ -18,7 +18,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="w-1/2 bg-white mx-auto rounded-30">
+    <div className="md:w-4/5 w-full bg-white mx-auto rounded-30">
       <div className={cssRender}>
         <input
           value={searchQuery}
@@ -26,7 +26,7 @@ export default function SearchBar() {
           placeholder="Search..."
           autoComplete="off"
           className="flex-1 h-10 
-          outline-none text-xl text-gray-800"
+          outline-none text-xl text-gray-800 md:w-4/5 w-full placeholder:text-slate-600"
           onChange={(event) => {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
