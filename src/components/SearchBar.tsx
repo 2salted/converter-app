@@ -18,14 +18,14 @@ export default function SearchBar() {
   }
 
   return (
-    <div className="w-1/2 bg-transparent border-2 border-black mx-auto rounded-30">
+    <div className="w-1/2 bg-white mx-auto rounded-30">
       <div className={cssRender}>
         <input
           value={searchQuery}
           type="text"
           placeholder="Search..."
           autoComplete="off"
-          className="flex-1 h-10 bg-transparent border-none 
+          className="flex-1 h-10 
           outline-none text-xl text-gray-800"
           onChange={(event) => {
             setSearchQuery(event.target.value);
@@ -47,7 +47,7 @@ export default function SearchBar() {
       </div>
       <div>
         {listItems.length > 0 ? (
-          <ul className="bg-transparent p-0 border-t border-t-gray-300 rounded-bl-30 rounded-br-30 shadow-xl">
+          <ul className="p-0 border-t border-t-gray-300 rounded-bl-30 rounded-br-30 shadow-xl">
             {listItems.map((list, index: number) => {
               return (
                 <div className="list-none text-base rounded-none p-2 hover:bg-slate-200 last:rounded-bl-30 last:rounded-br-30">
