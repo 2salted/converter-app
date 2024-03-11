@@ -1,6 +1,7 @@
 import { useState } from "react";
 import loupeImage from "../assets/loupeImage.png";
 import availableSearchQueries from "../searches.ts";
+import List from "./List.tsx";
 
 export default function SearchBar() {
   const [searchQuery, setSearchQuery] = useState<string[] | string>("");
@@ -15,6 +16,8 @@ export default function SearchBar() {
     cssRender =
       "flex items-center pt-2.5 pb-2.5 pl-5 pr-5 rounded-30 shadow-xl";
   }
+
+  let cssRounded = "";
 
   return (
     <div className="md:w-4/5 w-full bg-white mx-auto rounded-30">
@@ -48,15 +51,27 @@ export default function SearchBar() {
       <div>
         {listItems.length > 0 ? (
           <ul className="p-0 border-t border-t-gray-300 rounded-bl-30 rounded-br-30 shadow-xl">
-            {listItems.map((list, index: number) => {
-              return (
-                <div className="list-none text-base rounded-none p-2 hover:bg-slate-200 last:rounded-bl-30 last:rounded-br-30">
-                  <li key={index} className="cursor-pointer p-1">
-                    {list}
-                  </li>
-                </div>
-              );
-            })}
+            {listItems
+              .map((item) => {
+                return availableSearchQueries.find((a) => a.query === item);
+              })
+              .map((obj, index) => {
+                if (index === listItems.length - 1) {
+                  cssRounded =
+                    "list-none text-base rounded-none p-2 hover:bg-slate-200 last:rounded-br-30 last:rounded-bl-30";
+                } else {
+                  cssRounded =
+                    "list-none text-base rounded-none p-2 hover:bg-slate-200";
+                }
+                return (
+                  <List
+                    key={index}
+                    link={obj?.queryId}
+                    query={obj?.query}
+                    cssRounded={cssRounded}
+                  />
+                );
+              })}
           </ul>
         ) : (
           <div></div>
