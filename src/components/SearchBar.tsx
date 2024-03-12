@@ -28,7 +28,7 @@ export default function SearchBar() {
           placeholder="Search..."
           autoComplete="off"
           className="flex-1 h-10 
-          outline-none text-xl text-gray-800 md:w-4/5 w-full placeholder:text-slate-600"
+          outline-none text-xl bg-white text-gray-800 md:w-4/5 w-full placeholder:text-slate-600"
           onChange={(event) => {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
