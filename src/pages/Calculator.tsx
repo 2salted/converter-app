@@ -8,7 +8,7 @@ export default function Calculator() {
     let searchQuery = availableSearchQueries[i];
     if (calcId !== undefined) {
       if (calcId === searchQuery.queryId) {
-        return <div>{searchQuery.queryId}</div>
+        return;
       }
     }
   }
