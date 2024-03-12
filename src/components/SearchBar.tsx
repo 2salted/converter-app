@@ -65,6 +65,7 @@ export default function SearchBar() {
                 }
                 return (
                   <List
+                    topic={obj?.topic}
                     key={index}
                     link={obj?.queryId}
                     query={obj?.query}
