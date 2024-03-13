@@ -1,6 +1,6 @@
 import { useState } from "react";
 import loupeImage from "../assets/loupeImage.png";
-import availableSearchQueries from "../searches.ts";
+import calculators from "../searches.ts";
 import List from "./List.tsx";
 
 export default function SearchBar() {
@@ -32,7 +32,7 @@ export default function SearchBar() {
           onChange={(event) => {
             setSearchQuery(event.target.value);
             if (event.target.value.length !== 0) {
-              let filteredArray = availableSearchQueries.filter((keyword) => {
+              let filteredArray = calculators.filter((keyword) => {
                 return keyword.query
                   .toLowerCase()
                   .includes(event.target.value.toLowerCase());
@@ -53,7 +53,7 @@ export default function SearchBar() {
           <ul className="p-0 border-t border-t-gray-300 rounded-bl-30 rounded-br-30 shadow-xl">
             {listItems
               .map((item) => {
-                return availableSearchQueries.find((a) => a.query === item);
+                return calculators.find((a) => a.query === item);
               })
               .map((obj, index) => {
                 if (index === listItems.length - 1) {
