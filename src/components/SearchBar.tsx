@@ -1,6 +1,6 @@
 import { useState } from "react";
 import loupeImage from "../assets/loupeImage.png";
-import calculators from "../searches.ts";
+import { calculators } from "../searches.ts";
 import List from "./List.tsx";
 
 export default function SearchBar() {
