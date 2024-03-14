@@ -4,9 +4,14 @@ import { useState } from "react";
 
 export default function Calculator() {
   const { calcId } = useParams();
-  const [inputState, setInputState] = useState([""]);
+  const [inputState, setInputState] = useState(
+    Array(calculators.find((a) => a.queryId === calcId)?.inputs.length)
+      .join(".")
+      .split(".")
+  );
   let foundSelected = calculators.find((a) => a.queryId === calcId);
 
+  console.log(inputState);
   return (
     <div
       className="flex justify-center h-screen box-border font-jetbrainsmono"
@@ -20,18 +25,23 @@ export default function Calculator() {
           {foundSelected &&
             foundSelected?.inputs.map((input, index) => {
               return (
-                <div className="flex flex-row" key={index}>
+                <div key={index} className="flex flex-row">
                   <input
                     className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none 
                     rounded-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
                     [&::-webkit-inner-spin-button]:appearance-none"
-                    type="number"
+                    type="text"
                     value={inputState[index]}
                     placeholder={input.name}
                     onChange={(e) => {
                       let oldArray = [...inputState];
                       oldArray[index] = e.target.value;
                       setInputState(oldArray);
+                      if (inputState[index]) {
+                        console.log("true");
+                      } else {
+                        console.log("false");
+                      }
                     }}
                   />
                 </div>
@@ -40,11 +50,7 @@ export default function Calculator() {
         </div>
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
-          <input
-            className="p-2 border shadow-xl border-gray-300 rounded-r-md outline-none rounded-20"
-            type="text"
-            placeholder="Input 2"
-          />
+          <p className="p-2 border shadow-xl w-52 h-10 bg-white border-gray-300 rounded-r-md outline-none rounded-20" />
         </div>
       </div>
     </div>
