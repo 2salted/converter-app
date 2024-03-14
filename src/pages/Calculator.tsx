@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { calculators } from "../searches";
+import { useState } from "react";
 
 export default function Calculator() {
   const { calcId } = useParams();
+  const [inputState, setInputState] = useState([""]);
   let foundSelected = calculators.find((a) => a.queryId === calcId);
 
   return (
@@ -14,16 +16,21 @@ export default function Calculator() {
       }}
     >
       <div className="flex items-center text-black">
-        <div className="pr-10">
+        <div className="pr-10 flex flex-col gap-7">
           {foundSelected &&
             foundSelected?.inputs.map((input, index) => {
               return (
                 <div className="flex flex-row" key={index}>
-                  <div>{input.name}</div>
                   <input
-                    className="p-2 border border-gray-300 rounded-l-md outline-none rounded-20"
-                    type="text"
-                    placeholder="Input 1"
+                    className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none rounded-20"
+                    type="number"
+                    value={inputState[index]}
+                    placeholder={input.name}
+                    onChange={(e) => {
+                      let oldArray = [...inputState];
+                      oldArray[index] = e.target.value;
+                      setInputState(oldArray);
+                    }}
                   />
                 </div>
               );
@@ -32,7 +39,7 @@ export default function Calculator() {
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
           <input
-            className="p-2 border border-gray-300 rounded-r-md outline-none rounded-20"
+            className="p-2 border shadow-xl border-gray-300 rounded-r-md outline-none rounded-20"
             type="text"
             placeholder="Input 2"
           />
