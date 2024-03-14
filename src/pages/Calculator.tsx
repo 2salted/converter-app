@@ -11,7 +11,6 @@ export default function Calculator() {
   );
   let foundSelected = calculators.find((a) => a.queryId === calcId);
 
-  console.log(inputState);
   return (
     <div
       className="flex justify-center h-screen box-border font-jetbrainsmono"
@@ -37,7 +36,7 @@ export default function Calculator() {
                       let oldArray = [...inputState];
                       oldArray[index] = e.target.value;
                       setInputState(oldArray);
-                      if (inputState[index]) {
+                      if (e.target.value[index]) {
                         console.log("true");
                       } else {
                         console.log("false");
