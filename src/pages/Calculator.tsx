@@ -22,7 +22,9 @@ export default function Calculator() {
               return (
                 <div className="flex flex-row" key={index}>
                   <input
-                    className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none rounded-20"
+                    className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none 
+                    rounded-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
+                    [&::-webkit-inner-spin-button]:appearance-none"
                     type="number"
                     value={inputState[index]}
                     placeholder={input.name}
