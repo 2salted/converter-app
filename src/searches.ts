@@ -11,7 +11,7 @@ export let calculators = [
     topic: "Conversion",
     query: "Fahrenheit Converter",
     inputs: [{ name: "fahrenheit", label: "F" }],
-    outputs: [{ name: "celsius", label: "F" }],
+    outputs: [{ name: "celsius", label: "C" }],
   },
   {
     queryId: "bmicalculator",
