@@ -13,7 +13,17 @@ export default function Calculator() {
   let foundSelected = calculators.find((a) => a.queryId === calcId);
   const result =
     calcId && foundSelected ? calculate(inputState.map(Number), calcId) : null;
-    
+
+  function findChar() {
+    for (let i = 0; i < inputState.length; i++) {
+      if (!inputState[i].trim()) {
+        return console.log("not all inputs have characters");
+      }
+    }
+    return console.log("all inputs have characters");
+  }
+
+  findChar();
 
   return (
     <div
