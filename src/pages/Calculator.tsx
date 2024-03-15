@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { calculators } from "../searches";
+import { calculate, calculators } from "../searches";
 import { useState } from "react";
 
 export default function Calculator() {
@@ -9,7 +9,11 @@ export default function Calculator() {
       .join(".")
       .split(".")
   );
+
   let foundSelected = calculators.find((a) => a.queryId === calcId);
+
+  const result =
+    calcId && foundSelected ? calculate(inputState.map(Number), calcId) : null;
 
   return (
     <div
@@ -27,8 +31,7 @@ export default function Calculator() {
                 <div key={index} className="flex flex-row">
                   <input
                     className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none 
-                    rounded-20 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none 
-                    [&::-webkit-inner-spin-button]:appearance-none"
+                    rounded-20"
                     type="text"
                     value={inputState[index]}
                     placeholder={input.name}
@@ -36,11 +39,6 @@ export default function Calculator() {
                       let oldArray = [...inputState];
                       oldArray[index] = e.target.value;
                       setInputState(oldArray);
-                      if (e.target.value[index]) {
-                        console.log("true");
-                      } else {
-                        console.log("false");
-                      }
                     }}
                   />
                 </div>
@@ -49,7 +47,12 @@ export default function Calculator() {
         </div>
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
-          <p className="p-2 border shadow-xl w-52 h-10 bg-white border-gray-300 rounded-r-md outline-none rounded-20" />
+          <p
+            className="p-2 border shadow-xl w-52 h-10 bg-white border-gray-300
+            rounded-r-md outline-none rounded-20"
+          >
+            {result}
+          </p>
         </div>
       </div>
     </div>

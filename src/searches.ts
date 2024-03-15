@@ -40,10 +40,15 @@ function fahrenheitToCelsius(inputs: number[]): number[] {
   return [(inputs[0] - 32) * (5 / 9)];
 }
 
+function bmicalculator(inputs: number[]): number[] {
+  return [inputs[1] / inputs[0] ** 2];
+}
+
 export function calculate(inputs: number[], queryId: string): number[] {
   const calculationMap: { [key: string]: (inputs: number[]) => number[] } = {
     celsius: celciusToFahrenheit,
     fahrenheit: fahrenheitToCelsius,
+    bmicalculator: bmicalculator,
   };
   return calculationMap[queryId](inputs);
 }
