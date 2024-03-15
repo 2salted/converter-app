@@ -9,11 +9,11 @@ export default function Calculator() {
       .join(".")
       .split(".")
   );
-
+  const [showResult, setShowResult] = useState<boolean>(false);
   let foundSelected = calculators.find((a) => a.queryId === calcId);
-
   const result =
     calcId && foundSelected ? calculate(inputState.map(Number), calcId) : null;
+    
 
   return (
     <div
@@ -51,7 +51,9 @@ export default function Calculator() {
             className="p-2 border shadow-xl w-52 h-10 bg-white border-gray-300
             rounded-r-md outline-none rounded-20"
           >
-            {result}
+            {result?.map((answer) => {
+              return answer.toFixed(1);
+            })}
           </p>
         </div>
       </div>
