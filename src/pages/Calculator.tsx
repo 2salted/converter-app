@@ -9,7 +9,6 @@ export default function Calculator() {
       .join(".")
       .split(".")
   );
-  const [showResult, setShowResult] = useState<boolean>(false);
   let foundSelected = calculators.find((a) => a.queryId === calcId);
   const result =
     calcId && foundSelected ? calculate(inputState.map(Number), calcId) : null;
@@ -17,13 +16,11 @@ export default function Calculator() {
   function findChar() {
     for (let i = 0; i < inputState.length; i++) {
       if (!inputState[i].trim()) {
-        return console.log("not all inputs have characters");
+        return false;
       }
     }
-    return console.log("all inputs have characters");
+    return true;
   }
-
-  findChar();
 
   return (
     <div
@@ -58,12 +55,13 @@ export default function Calculator() {
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
           <p
-            className="p-2 border shadow-xl w-52 h-10 bg-white border-gray-300
+            className="p-2 border shadow-xl w-64 h-11 bg-white border-gray-300
             rounded-r-md outline-none rounded-20"
           >
-            {result?.map((answer) => {
-              return answer.toFixed(1);
-            })}
+            {findChar() === true &&
+              result?.map((answer) => {
+                if (answer) return answer.toFixed(1);
+              })}
           </p>
         </div>
       </div>
