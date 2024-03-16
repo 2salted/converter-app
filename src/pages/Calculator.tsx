@@ -36,18 +36,30 @@ export default function Calculator() {
             foundSelected?.inputs.map((input, index) => {
               return (
                 <div key={index} className="flex flex-row">
-                  <input
-                    className="p-2 shadow-xl border border-gray-300 rounded-l-md outline-none 
+                  <div
+                    className="flex flex-row p-2 bg-white shadow-xl border border-gray-300 rounded-l-md 
                     rounded-20"
-                    type="text"
-                    value={inputState[index]}
-                    placeholder={input.name}
-                    onChange={(e) => {
-                      let oldArray = [...inputState];
-                      oldArray[index] = e.target.value;
-                      setInputState(oldArray);
-                    }}
-                  />
+                  >
+                    <label htmlFor={"" + index} className="text-gray-400">
+                      {input.name}
+                    </label>
+                    <input
+                      className="outline-none bg-transparent justify-end max-w-40 text-right pr-1"
+                      id={"" + index}
+                      type="text"
+                      value={inputState[index]}
+                      onChange={(e) => {
+                        let oldArray = [...inputState];
+                        oldArray[index] = e.target.value;
+                        setInputState(oldArray);
+                      }}
+                    />
+                    <select className="text-black">
+                      {foundSelected?.units.map((unit: any, index) => {
+                        return "";
+                      })}
+                    </select>
+                  </div>
                 </div>
               );
             })}
@@ -55,12 +67,12 @@ export default function Calculator() {
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
           <p
-            className="p-2 border shadow-xl w-64 h-11 bg-white border-gray-300
+            className="p-2 border shadow-xl w-64 h-10 bg-white border-gray-300
             rounded-r-md outline-none rounded-20"
           >
             {findChar() === true &&
               result?.map((answer) => {
-                if (answer) return answer.toFixed(1);
+                return answer.toFixed(0);
               })}
           </p>
         </div>
