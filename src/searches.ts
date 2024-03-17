@@ -11,7 +11,7 @@ export let calculators = [
     topic: "Conversion",
     query: "Fahrenheit Converter",
     inputs: [{ name: "fahrenheit", label: "F", unit: ["f", "k"] }],
-    outputs: [{ name: "celsius", label: "C" }],
+    outputs: [{ name: "celsius", label: "C", unit: [""] }],
   },
   {
     queryId: "bmicalculator",
@@ -25,14 +25,14 @@ export let calculators = [
       },
       { name: "weight", label: "W", unit: ["kg", "lbs"] },
     ],
-    outputs: [{ name: "bmi", label: "bmi" }],
+    outputs: [{ name: "your BMI is:", label: "bmi", unit: ["bmi"] }],
   },
   {
     queryId: "deltav",
     topic: "Physics",
     query: "Delta V Calculator",
     inputs: [{ name: "no name", label: "nn", unit: ["nn", "nnk"] }],
-    outputs: [{ name: "no name", label: "nn" }],
+    outputs: [{ name: "no name", label: "nn", unit: ["nns"] }],
   },
   {
     queryId: "lengthConverter",

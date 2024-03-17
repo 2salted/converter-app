@@ -98,15 +98,26 @@ export default function Calculator() {
         </div>
         <div className="px-3 text-7xl text-white">=</div>
         <div className="pl-10">
-          <p
-            className="p-2 border shadow-xl w-64 h-10 bg-white border-gray-300
-            rounded-r-md outline-none rounded-20"
-          >
-            {findChar() === true &&
-              result?.map((answer) => {
-                return answer.toFixed(1);
-              })}
-          </p>
+          {foundSelected?.outputs.map((output, index) => {
+            return (
+              <div key={index}>
+                <div
+                  className="flex flex-row justify-between p-2 w-64 h-10 bg-white shadow-xl border border-gray-300 rounded-l-md 
+                rounded-20"
+                >
+                  {findChar() === true && (
+                    <label className="text-gray-400">{output.name}</label>
+                  )}
+                  <div className="outline-none bg-transparent justify-end max-w-40 text-right pr-1">
+                    {findChar() === true &&
+                      result?.map((answer) => {
+                        return answer.toFixed(1);
+                      })}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
