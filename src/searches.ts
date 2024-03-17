@@ -37,9 +37,17 @@ export let calculators = [
   {
     queryId: "lengthConverter",
     topic: "Conversion",
-    query: "cm to m",
-    inputs: [{ name: "cm", label: "cm", unit: ["cm", "m", "ft", "in"] }],
-    outputs: [{ name: "m", label: "m", unit: ["m", "cm", "ft", "in"] }],
+    query: "Length converter",
+    inputs: [
+      { name: "length", label: "length", unit: ["cm", "m", "ft", "in"] },
+    ],
+    outputs: [
+      {
+        name: "outputLength",
+        label: "outputLength",
+        unit: ["m", "cm", "ft", "in"],
+      },
+    ],
   },
 ];
 

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { calculate, calculators } from "../searches";
+import { calculate, calculators, convertToSI } from "../searches";
 import { useState } from "react";
 
 export default function Calculator() {
@@ -9,9 +9,26 @@ export default function Calculator() {
       .join(".")
       .split(".")
   );
+  const [inputUnits, setInputUnits] = useState(
+    calculators
+      .find((a) => a.queryId === calcId)
+      ?.inputs.map((input) => input.unit[0])
+  );
   let foundSelected = calculators.find((a) => a.queryId === calcId);
+
+  if (inputUnits === undefined) {
+    return <div></div>;
+  }
+
   const result =
-    calcId && foundSelected ? calculate(inputState.map(Number), calcId) : null;
+    calcId && foundSelected
+      ? calculate(
+          inputState.map(Number).map((input, index) => {
+            return convertToSI(input, inputUnits[index]);
+          }),
+          calcId
+        )
+      : null;
 
   function findChar() {
     for (let i = 0; i < inputState.length; i++) {
@@ -49,12 +66,20 @@ export default function Calculator() {
                       type="text"
                       value={inputState[index]}
                       onChange={(e) => {
-                        let oldArray = [...inputState];
-                        oldArray[index] = e.target.value;
-                        setInputState(oldArray);
+                        let arrCopy = [...inputState];
+                        arrCopy[index] = e.target.value;
+                        setInputState(arrCopy);
                       }}
                     />
-                    <select className="text-black text-center text-base outline-none">
+                    <select
+                      value={inputUnits[index]}
+                      className="text-black text-center text-base outline-none"
+                      onChange={(e) => {
+                        let arrCopy = [...inputUnits];
+                        arrCopy[index] = e.target.value;
+                        setInputUnits(arrCopy);
+                      }}
+                    >
                       {input.unit.map((unitSelect, unitIndex) => {
                         return (
                           <option
@@ -79,7 +104,7 @@ export default function Calculator() {
           >
             {findChar() === true &&
               result?.map((answer) => {
-                return answer.toFixed(0);
+                return answer.toFixed(1);
               })}
           </p>
         </div>
