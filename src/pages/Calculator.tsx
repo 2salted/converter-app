@@ -35,7 +35,7 @@ export default function Calculator() {
           {foundSelected &&
             foundSelected?.inputs.map((input, index) => {
               return (
-                <div key={index} className="flex flex-row">
+                <div key={index}>
                   <div
                     className="flex flex-row p-2 bg-white shadow-xl border border-gray-300 rounded-l-md 
                     rounded-20"
