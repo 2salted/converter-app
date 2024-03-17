@@ -54,9 +54,9 @@ export default function Calculator() {
                         setInputState(oldArray);
                       }}
                     />
-                    <select className="text-black">
-                      {foundSelected?.units.map((unit: any, index) => {
-                        return "";
+                    <select className="text-black text-center text-base outline-none">
+                      {input.unit.map((unitSelect, unitIndex) => {
+                        return <option key={unitIndex}>{unitSelect}</option>;
                       })}
                     </select>
                   </div>
