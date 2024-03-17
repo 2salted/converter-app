@@ -4,14 +4,14 @@ export let calculators = [
     topic: "Conversion",
     query: "Celsius Converter",
     inputs: [{ name: "celsius", label: "C", unit: ["c", "k"] }],
-    outputs: [{ name: "fahrenheit", label: "F" }],
+    outputs: [{ name: "fahrenheit", label: "F", unit: ["f"] }],
   },
   {
     queryId: "fahrenheit",
     topic: "Conversion",
     query: "Fahrenheit Converter",
     inputs: [{ name: "fahrenheit", label: "F", unit: ["f", "k"] }],
-    outputs: [{ name: "celsius", label: "C", unit: [""] }],
+    outputs: [{ name: "celsius", label: "C", unit: ["c"] }],
   },
   {
     queryId: "bmicalculator",
@@ -44,7 +44,7 @@ export let calculators = [
     outputs: [
       {
         name: "outputLength",
-        label: "outputLength",
+        label: "Length",
         unit: ["m", "cm", "ft", "in"],
       },
     ],
@@ -74,6 +74,7 @@ export function convertToSI(input: number, from: string): number {
     ft: 0.3048,
     kg: 1,
     lbs: 0.453592,
+    in: 39.3701,
   };
   return input * unitMap[from];
 }

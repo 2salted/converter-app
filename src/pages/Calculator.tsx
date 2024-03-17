@@ -1,5 +1,10 @@
 import { useParams } from "react-router-dom";
-import { calculate, calculators, convertToSI } from "../searches";
+import {
+  calculate,
+  calculators,
+  convertFromSI,
+  convertToSI,
+} from "../searches";
 import { useState } from "react";
 
 export default function Calculator() {
@@ -14,9 +19,19 @@ export default function Calculator() {
       .find((a) => a.queryId === calcId)
       ?.inputs.map((input) => input.unit[0])
   );
+  const [outputUnits, setOutputUnits] = useState(
+    calculators
+      .find((a) => a.queryId === calcId)
+      ?.outputs.map((output) => output.unit[0])
+  );
+
   let foundSelected = calculators.find((a) => a.queryId === calcId);
 
   if (inputUnits === undefined) {
+    return <div></div>;
+  }
+
+  if (outputUnits === undefined) {
     return <div></div>;
   }
 
@@ -106,7 +121,7 @@ export default function Calculator() {
                 rounded-20"
                 >
                   {findChar() === true && (
-                    <label className="text-gray-400">{output.name}</label>
+                    <label className="text-gray-400">{output.label}</label>
                   )}
                   <div className="outline-none bg-transparent justify-end max-w-40 text-right pr-1">
                     {findChar() === true &&
@@ -114,6 +129,19 @@ export default function Calculator() {
                         return answer.toFixed(1);
                       })}
                   </div>
+                  <select
+                    value={outputUnits[index]}
+                    className="text-black text-center text-base outline-none"
+                    onChange={(e) => {
+                      let arrCopy = [...outputUnits];
+                      arrCopy[index] = e.target.value;
+                      setOutputUnits(arrCopy);
+                    }}
+                  >
+                    {output.unit.map((unitSelect, unitIndex) => {
+                      return <option key={unitIndex}>{unitSelect}</option>;
+                    })}
+                  </select>
                 </div>
               </div>
             );
