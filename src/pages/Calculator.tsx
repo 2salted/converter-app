@@ -56,7 +56,14 @@ export default function Calculator() {
                     />
                     <select className="text-black text-center text-base outline-none">
                       {input.unit.map((unitSelect, unitIndex) => {
-                        return <option key={unitIndex}>{unitSelect}</option>;
+                        return (
+                          <option
+                            key={unitIndex}
+                            className="py-2 text-black hover:bg-gray-100 hover:text-gray-900"
+                          >
+                            {unitSelect}
+                          </option>
+                        );
                       })}
                     </select>
                   </div>
