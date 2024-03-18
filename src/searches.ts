@@ -28,13 +28,6 @@ export let calculators = [
     outputs: [{ name: "your BMI is:", label: "bmi", unit: ["bmi"] }],
   },
   {
-    queryId: "deltav",
-    topic: "Physics",
-    query: "Delta V Calculator",
-    inputs: [{ name: "no name", label: "nn", unit: ["nn", "nnk"] }],
-    outputs: [{ name: "no name", label: "nn", unit: ["nns"] }],
-  },
-  {
     queryId: "lengthConverter",
     topic: "Conversion",
     query: "Length converter",
@@ -51,7 +44,7 @@ export let calculators = [
   },
 ];
 
-function celciusToFahrenheit(inputs: number[]): number[] {
+function celsiusToFahrenheit(inputs: number[]): number[] {
   return [inputs[0] * (9 / 5) + 32];
 }
 
@@ -76,6 +69,7 @@ export function convertToSI(input: number, from: string): number {
     lbs: 0.453592,
     in: 0.0254,
     bmi: 1,
+    k: 1,
   };
   return input * unitMap[from];
 }
@@ -95,7 +89,7 @@ export function convertFromSI(input: number, to: string): number {
 
 export function calculate(inputs: number[], queryId: string): number[] {
   const calculationMap: { [key: string]: (inputs: number[]) => number[] } = {
-    celsius: celciusToFahrenheit,
+    celsius: celsiusToFahrenheit,
     fahrenheit: fahrenheitToCelsius,
     bmicalculator: bmicalculator,
     lengthConverter: doNothing,
