@@ -42,12 +42,14 @@ export default function Calculator() {
             return convertToSI(input, inputUnits[index]);
           }),
           calcId
-        )
+        ).map((convertibleInput, convertibleIndex) => {
+          return convertFromSI(convertibleInput, outputUnits[convertibleIndex]);
+        })
       : null;
 
   function findChar() {
     for (let i = 0; i < inputState.length; i++) {
-      if (!inputState[i].trim()) {
+      if (inputState[i].trim() === "") {
         return false;
       }
     }
@@ -120,11 +122,11 @@ export default function Calculator() {
                   className="flex flex-row justify-between p-2 w-64 h-10 bg-white shadow-xl border border-gray-300 rounded-l-md 
                 rounded-20"
                 >
-                  {findChar() === true && (
+                  {findChar() && (
                     <label className="text-gray-400">{output.label}</label>
                   )}
                   <div className="outline-none bg-transparent justify-end max-w-40 text-right pr-1">
-                    {findChar() === true &&
+                    {findChar() &&
                       result?.map((answer) => {
                         return answer.toFixed(1);
                       })}

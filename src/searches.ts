@@ -74,7 +74,8 @@ export function convertToSI(input: number, from: string): number {
     ft: 0.3048,
     kg: 1,
     lbs: 0.453592,
-    in: 39.3701,
+    in: 0.0254,
+    bmi: 1,
   };
   return input * unitMap[from];
 }
@@ -86,6 +87,8 @@ export function convertFromSI(input: number, to: string): number {
     ft: 3.28084,
     kg: 1,
     lbs: 2.20462,
+    in: 39.3701,
+    bmi: 1,
   };
   return input * unitMap[to];
 }
