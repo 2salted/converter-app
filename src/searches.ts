@@ -62,14 +62,7 @@ function bmicalculator(inputs: number[]): number[] {
 
 export function convertToSI(input: number, from: string): number {
   const unitMap: { [key: string]: number } = {
-    cm: 0.01,
-    m: 1,
-    ft: 0.3048,
-    kg: 1,
-    lbs: 0.453592,
-    in: 0.0254,
-    bmi: 1,
-    k: 1,
+    'c': (input - 32) * 5/9
   };
   return input * unitMap[from];
 }
